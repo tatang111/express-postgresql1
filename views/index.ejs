@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <% if (users.length> 0) { %>
+        <% if (title.includes("Name") || title.includes("User")) { %>
+        <form style="display: inline; margin-right: 20px;" method="get" action="/search">
+            <label for="searchName">Search by Name </label>
+            <input type="text" id="searchName" name="searchName" value="<%= searchName || '' %>">
+            <button>Search</button>
+        </form>
+        <% } %>
+        <% if (title.includes("Email") || title.includes("User")) { %>
+            <form style="display: inline;" method="get" action="/searchbyEmail">
+                <label for="searchEmail">Search by Email </label>
+                <input type="text" id="searchEmail" name="searchEmail" value="<%= searchEmail || '' %>">
+                <button>Search</button>
+            </form>
+        <% } %>
+        <% } %>
+            <ul>
+                <% if (users.length > 0) { %>
+                    <% users.forEach(user=> { %>
+                        <li>
+                            ID: <%= user.id %>,
+                                <p style="display: flex; justify-content: space-between; width: 400px;">
+                                    <span>
+
+                                        Name: <%= user.firstname %>
+                                            <%= user.lastname %>
+                                    </span>
+                                    <span>
+                                        Email: <%= user.email %>
+                                    </span>
+                                </p>
+                                <p style="display: flex; justify-content: space-between; width: 292px;">
+                                    <span>
+                                        Age: <%= user.age %>
+                                    </span>
+                                    Bio: <%= user.bio %>
+                                </p>
+                                <a href="/update/<%= user.id %>">Update User</a>
+                                <!-- Delete  -->
+                                <form method="post" style="display: inline;" action="/delete/<%= user.id %>">
+                                    <button
+                                        onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                </form>
+                        </li>
+                        <% }); %>
+                            <% } else { %>
+                                <p>No User</p>
+                               <% } %>
+ 
+            </ul>
+            <% if (searchName.length> 0 || searchEmail.length> 0) { %>
+                <a href="/">Back to Home</a>
+                <% } else { %>
+                    <a href="/create" style="display: block;">Create User</a>
+                    <% } %>
+ </body>
+
+</html>

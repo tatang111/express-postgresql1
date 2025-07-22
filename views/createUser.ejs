@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <form action="/create" method="post" style="display: flex; flex-direction: column; width: 300px; gap: 10px;">
+        <div style="display: flex; gap: 10px; justify-content: space-between;">
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" name="firstname" required>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: space-between;">
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" name="lastname" required>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: space-between;">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: space-between;">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: space-between;">
+            <label for="bio">Bio</label>
+            <input type="text" id="bio" name="bio" required>
+        </div>
+        <button>Submit</button>
+    </form>
+    <%- include("partials/error.ejs") %>
+        <a href="/">Back to home</a>
+</body>
+
+</html>
